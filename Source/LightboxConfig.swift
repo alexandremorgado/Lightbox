@@ -28,8 +28,10 @@ public class LightboxConfig {
         
     let sessionManager: URLSession = {
       let configuration =  URLSessionConfiguration.default
+      #if !targetEnvironment(macCatalyst)
       let cache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
       configuration.urlCache = cache
+      #endif
       return URLSession(configuration: configuration)
     }()
         
